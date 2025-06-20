@@ -24,6 +24,7 @@ void output_dashboard(FramerContext *context) {
     	static uint32_t last_bip8_err = 0;
     	static uint32_t last_latency = 0;
     	static uint32_t last_active_slots = 0;
+	static uint32_t last_slot_packets[MAX_SLOTS] = {0};
 
 	//only refresh dashboard on slot count change, should fix jittering terminal
 
