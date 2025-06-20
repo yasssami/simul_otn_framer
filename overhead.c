@@ -1,6 +1,6 @@
 #include "otn.h"
 #include <string.h>
-
+#include <stdlib.h>
 
 uint8_t calc_bip8(const uint8_t *data, size_t len) {
 	uint8_t bip8 = 0;
