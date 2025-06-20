@@ -3,6 +3,9 @@
 #include <conio.h>
 #include <windows.h>
 #include <stdbool.h>
+#include <time.h>
+
+
 bool read(FramerContext *context) {
     if (_kbhit()) {
         switch (_getch()) {
@@ -48,11 +51,13 @@ bool read(FramerContext *context) {
     }
     return true;
 }
+
 int main() {
     FramerContext context;
     framer_init(&context);
     context.state = FRAMER_ACTIVE;
-    
+    clock_t last_refresh = clock();
+    const clock_t refresh_interval = CLOCKS_PER_SEC / 10;
     bool active = true;
     while (active) {
 	if (!read(&context)) active = false;	
@@ -62,11 +67,13 @@ int main() {
             fetch_signal(&context);
             sim_err(&context);
         }
-        
-        output_dashboard(&context);
+	clock_t current = clock();
+        if (current - last_refresh >= refresh_interval) {
+            output_dashboard(&context);
+            last_refresh = current;
+        }        
         read(&context);
-        
-        Sleep(10); //debug
+     	Sleep(context.state == FRAMER_ACTIVE ? 10 : 100);   
     }
 	return 0;
 }
