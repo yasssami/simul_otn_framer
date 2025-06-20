@@ -32,8 +32,9 @@ bool read(FramerContext *context) {
                         NULL,
                         0,
                         0
-                    };
+                };
                     context->active_slots++;
+		    output_dashboard(context);
                 }
                 break;
                 
@@ -60,7 +61,10 @@ int main() {
     const clock_t refresh_interval = CLOCKS_PER_SEC / 10;
     bool active = true;
     while (active) {
-	if (!read(&context)) active = false;	
+	if (!read(&context)) {
+		active = false;
+		break;
+	}	
         if (context.state == FRAMER_ACTIVE) {
             framer_ps(&context);
             append_otu_overhead(&context);
