@@ -39,7 +39,7 @@ void gen_frame(FramerContext *context) {
 	uint32_t payload_offset = 0;
 	for (int i = 0; i < context->active_slots; i++) {
 		const uint32_t slot_sz = context->slots[i].bitrate / (8 * 1000);
-		for (uint32_t j = 0l j < slot_sz; j++) {
+		for (uint32_t j = 0; j < slot_sz; j++) {
 			frame->payload[payload_offset++] = rand() % 256;
 		}
 		context->slots[i].num_pkt++;

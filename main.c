@@ -1,8 +1,8 @@
 #include "otn.h"
 #include <conio.h>
 #include <windows.h>
-
-void read(FramerContext *context) {
+#include <stdbool.h>
+bool read(FramerContext *context) {
     if (_kbhit()) {
         switch (_getch()) {
             case ' ':
@@ -42,9 +42,10 @@ void read(FramerContext *context) {
                 
             case 'q':
             case 'Q':
-                return;
+                return false;
         }
     }
+    return true;
 }
 int main() {
     FramerContext context;
@@ -53,6 +54,7 @@ int main() {
     
     bool active = true;
     while (active) {
+	if (!read(&context)) active = false;	
         if (context.state == FRAMER_ACTIVE) {
             framer_ps(&context);
             append_otu_overhead(&context);

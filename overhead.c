@@ -22,7 +22,7 @@ void append_otu_overhead(FramerContext *context) {
 	OTUFrame *frame = (OTUFrame *)context->frame_bfr;
 
 	//append bip8
-	frame->otu.signal_monitor = calc_bip8(context->frame_bfr + 6, sizeof(OTUFrame) - 6);
+	frame->otu.section_monitor = calc_bip8(context->frame_bfr + 6, sizeof(OTUFrame) - 6);
 	frame->odu.path_monitor = context->num_frames % 256;
 }
 
