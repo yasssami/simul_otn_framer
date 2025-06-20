@@ -68,4 +68,9 @@ typedef struct {
 	uint32_t active_slots;
 	uint8_t frame_bfr[sizeof(OTUFrame)];
 } FramerContext;
-
+void framer_init(FramerContext *context);
+void framer_ps(FramerContext *context);
+void append_otu_overhead(FramerContext *context);
+void fetch_signal(FramerContext *context);
+void sim_err(FramerContext *context);
+void output_dashboard(FramerContext *context);

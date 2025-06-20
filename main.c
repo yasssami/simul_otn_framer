@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "otn.h"
 #include <conio.h>
 #include <windows.h>

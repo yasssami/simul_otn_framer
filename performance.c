@@ -3,6 +3,8 @@
 #include <windows.h>
 #include <time.h>
 
+void sim_err(FramerContext *context);
+
 const char* get_client_name(ClientType type) {
 	switch(type) {
 		case CLIENT_ETH_10G: return "10G Ethernet";

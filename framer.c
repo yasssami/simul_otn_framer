@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <x86intrin.h>
 
 // init framer
 void framer_init(FramerContext *context) {
